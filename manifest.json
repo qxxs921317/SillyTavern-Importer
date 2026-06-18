@@ -1,7 +1,7 @@
 {
-    "display_name": "JanitorAI Full Importer",
+    "display_name": "🧹 JanitorAI Full Importer",
     "name": "janitor-full-importer",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "JanitorAI에서 캐릭터 카드(PNG)와 로어북(JSON)을 임포트합니다. 모든 alternate greetings 포함.",
     "requires": [],
     "optional": [],
