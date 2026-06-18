@@ -3,8 +3,8 @@
  * JanitorAI URL에서 캐릭터 카드(PNG)와 로어북(JSON)을 임포트합니다.
  * 모든 alternate_greetings 포함.
  */
-import { getRequestHeaders } from '../../../../script.js';
-import { extensionSettings, saveSettingsDebounced } from '../../../extensions.js';
+
+// ❌ (수정됨) 잘못된 경로로 스크립트를 뻗게 만들던 불필요한 import 2줄 완전 삭제!
 
 const EXTENSION_NAME = 'janitor-full-importer';
 const API_BASE = '/api/plugins/janitor-full-importer';
@@ -376,9 +376,8 @@ async function fetchCharacter(urlOrId) {
     setStatus('⏳ 캐릭터 데이터를 가져오는 중...', 'info');
     
     try {
-        const resp = await fetch(`${API_BASE}/character/${charId}`, {
-            headers: getRequestHeaders(),
-        });
+        // ❌ (수정됨) 헤더 요구사항 삭제하여 경로 꼬임 방지!
+        const resp = await fetch(`${API_BASE}/character/${charId}`);
         
         let data;
         try {
@@ -471,7 +470,7 @@ jQuery(async () => {
     const settingsHtml = `
         <div class="inline-drawer">
             <div class="inline-drawer-toggle inline-drawer-header">
-                <b>🧹 JanitorAI Full Importer</b>
+                <b>${EXTENSION_NAME} (🧹마법 빗자루)</b>
                 <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
             </div>
             <div class="inline-drawer-content">
@@ -479,7 +478,9 @@ jQuery(async () => {
             </div>
         </div>
     `;
-    $('#extensions_settings2').append(settingsHtml);
+    
+    // ❌ (수정됨) #extensions_settings2 -> ✅ #extensions_settings 로 올바르게 수정!
+    $('#extensions_settings').append(settingsHtml);
     
     $(document).on('click', '#janitor-fetch-btn', () => {
         const url = document.getElementById('janitor-url-input')?.value?.trim();
